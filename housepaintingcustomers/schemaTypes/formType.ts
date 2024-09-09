@@ -20,6 +20,10 @@ export const formType = defineType({
       validation: (Rule: {required: () => any}) => Rule.required(),
     }),
     defineField({
+      name: 'Description',
+      type: 'string',
+    }),
+    defineField({
       name: 'Date',
       type: 'date',
       validation: (Rule: {required: () => any}) => Rule.required(),

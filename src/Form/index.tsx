@@ -112,6 +112,26 @@ function Form() {
               />
             </FormControl>
             <FormControl>
+              <FormLabel sx={{ width: "fit-content" }} htmlFor="name">
+                Description
+              </FormLabel>
+              <TextField
+                id="description"
+                type="text"
+                multiline
+                name="description"
+                placeholder="e.g description"
+                required
+                fullWidth
+                value={data?.Description || ""}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setData({ ...data, Description: e?.target?.value });
+                }}
+                variant="outlined"
+                sx={{ ariaLabel: "Description" }}
+              />
+            </FormControl>
+            <FormControl>
               <FormLabel sx={{ width: "fit-content" }} htmlFor="date">
                 Date
               </FormLabel>

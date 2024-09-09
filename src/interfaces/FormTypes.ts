@@ -2,6 +2,7 @@ export interface FormType {
   FullName: string;
   Address: string;
   PhoneNumber: string;
+  Description: string;
   Date: Date;
   ReminderDate: Date;
   PropertyPhoto?: File | null;
