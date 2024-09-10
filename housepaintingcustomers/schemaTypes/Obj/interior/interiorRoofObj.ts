@@ -1,18 +1,17 @@
-import {defineField, defineType} from 'sanity'
-export const interiorRoofType = defineType({
+export default {
   name: 'interiorRoof',
   title: 'InteriorRoof',
-  type: 'document',
+  type: 'object',
   fields: [
-    defineField({
+    {
       name: 'Shower',
       type: 'boolean',
       initialValue: false,
-    }),
-    defineField({
+    },
+    {
       name: 'Room',
       type: 'boolean',
       initialValue: false,
-    }),
+    },
   ],
-})
+}

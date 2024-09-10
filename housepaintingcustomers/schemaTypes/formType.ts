@@ -50,13 +50,13 @@ export const formType = defineType({
     }),
     defineField({
       name: 'ExteriorFields',
-      type: 'reference',
-      to: [{type: 'exterior'}],
+      type: 'array',
+      of: [{type: 'exterior'}],
     }),
     defineField({
-      name: 'interiorFields',
-      type: 'reference',
-      to: [{type: 'interior'}],
+      name: 'InteriorFields',
+      type: 'array',
+      of: [{type: 'interior'}],
     }),
   ],
 })

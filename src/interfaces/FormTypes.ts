@@ -26,6 +26,6 @@ interface InteriorFieldsType {
   Room: boolean;
 }
 export enum PropertyOwnership{
-  Rental = "RENTAL",
-  Owner = "OWNER"
+  RENTAL = "rental",
+  OWNER = "owner"
 }

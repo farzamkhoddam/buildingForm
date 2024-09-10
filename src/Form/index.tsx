@@ -15,17 +15,73 @@ import MuiCard from "@mui/material/Card";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Interior from "./Interior";
 import Exterior from "./Exterior";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FormType, PropertyOwnership } from "../interfaces/FormTypes";
-import { useSanityQuery } from "../Utils/getSanityData";
+import { useMutation } from "@tanstack/react-query";
+import sanityClient from "../SanityClient";
+import { LoadingButton } from "@mui/lab";
+import { v4 as uuidv4 } from "uuid";
+import { UploadBody } from "@sanity/client";
 
 function Form() {
   const [data, setData] = useState<FormType>({} as FormType);
-  const { isLoading, isError, data: FormData } = useSanityQuery("*");
-  console.log("farzam formData ===", FormData);
-  
-  
-
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const imageAsset = await sanityClient.assets.upload(
+        "image",
+        data?.PropertyPhoto || ({} as UploadBody),
+        {
+          filename: data?.PropertyPhoto?.name,
+          contentType: data?.PropertyPhoto?.type,
+        }
+      );
+      // @ts-ignore
+      const res = await sanityClient.create({
+        _type: "form",
+        FullName: data?.FullName,
+        PhoneNumber: data?.PhoneNumber,
+        Address: data?.Address,
+        Description: data?.Description,
+        PropertyOwnership: data?.PropertyOwnership,
+        PropertyPhoto: {
+          _type: "image",
+          asset: { _type: "reference", _ref: imageAsset._id },
+        },
+        ExteriorFields: [
+          {
+            _key: uuidv4(),
+            _type: "exterior",
+            Roof: data?.ExteriorFields?.Roof || false,
+            BrickWall: data?.ExteriorFields?.BrickWall || false,
+            Floor: data?.ExteriorFields?.Floor || false,
+            Eaves: data?.ExteriorFields?.Eaves || false,
+            Facia: data?.ExteriorFields?.Facia || false,
+            Render: data?.ExteriorFields?.Render || false,
+            Gutter: data?.ExteriorFields?.Gutter || false,
+          },
+        ],
+        InteriorFields: [
+          {
+            _key: uuidv4(),
+            _type: "interior",
+            Timberwork: data?.InteriorFields.Timberwork || false,
+            Wall: data?.InteriorFields?.Wall || false,
+            Roof: [
+              {
+                _type: "interiorRoof",
+                _key: uuidv4(),
+                Room: data?.InteriorFields?.Room || false,
+                Shower: data?.InteriorFields?.Shower || false,
+              },
+            ],
+          },
+        ],
+        Date: data?.Date.toISOString().slice(0, 10),
+        ReminderDate: data?.ReminderDate.toISOString().slice(0, 10),
+      });
+      return res;
+    },
+  });
   // if (isLoading) {
   //   return <div>loading...</div>;
   // }
@@ -250,7 +306,7 @@ function Form() {
               </FormLabel>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue={PropertyOwnership.Rental}
+                defaultValue={PropertyOwnership.RENTAL}
                 value={data?.PropertyOwnership || ""}
                 onChange={(e) => {
                   setData({
@@ -260,12 +316,12 @@ function Form() {
                 }}
                 name="radio-buttons-group">
                 <FormControlLabel
-                  value={PropertyOwnership.Rental}
+                  value={PropertyOwnership.RENTAL}
                   control={<Radio />}
                   label={"Rental"}
                 />
                 <FormControlLabel
-                  value={PropertyOwnership.Owner}
+                  value={PropertyOwnership.OWNER}
                   control={<Radio />}
                   label="Owner"
                 />
@@ -273,9 +329,25 @@ function Form() {
             </FormControl>
             <Exterior formData={data} setFormData={setData} />
             <Interior formData={data} setFormData={setData} />
-            <Button type="submit" fullWidth variant="contained">
+            <LoadingButton
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                mutation.mutate();
+              }}
+              disabled={
+                !data?.FullName ||
+                !data?.PhoneNumber ||
+                !data?.Address ||
+                !data?.Description ||
+                !data?.Date ||
+                !data?.PropertyOwnership
+              }
+              loading={mutation.status === "pending"}
+              fullWidth
+              variant="contained">
               Submit
-            </Button>
+            </LoadingButton>
           </Box>
         </Card>
       </SignInContainer>
