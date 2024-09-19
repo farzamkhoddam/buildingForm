@@ -422,7 +422,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
     boxShadow:
       "hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px",
   }),
-  background: "rgb(82 82 82 /1)",
+  
 }));
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
