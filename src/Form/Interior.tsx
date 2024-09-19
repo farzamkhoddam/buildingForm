@@ -6,8 +6,8 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
-} from "@mui/material";
-import { FormType } from "../interfaces/FormTypes";
+} from '@mui/material';
+import { FormType } from '../interfaces/FormTypes';
 
 interface Props {
   formData: FormType;
@@ -50,17 +50,18 @@ function Interior({ formData, setFormData }: Props) {
 
   return (
     <FormControl
-      component="fieldset"
+      component='fieldset'
       sx={{
-        display: "flex",
-        justifyContent: "start",
-        borderRadius: "15px",
-        padding: "1rem",
-        boxShadow: "inset 1px 1px 6px 0px rgba(0, 0, 0, 0.5)",
-        border: "1px solid #333",
+        display: 'flex',
+        justifyContent: 'start',
+        borderRadius: '15px',
+        padding: '1rem',
+        boxShadow: 'inset 1px 1px 6px 0px rgba(0, 0, 0, 0.1)',
+        backgroundColor: 'rgb(64 64 64 /1)',
       }}
-      variant="standard">
-      <FormLabel sx={{ width: "fit-content" }}>Interior</FormLabel>
+      variant='standard'
+    >
+      <FormLabel sx={{ width: 'fit-content' }}>Interior</FormLabel>
       <StyledFormGroup>
         <FormControlLabel
           control={
@@ -75,10 +76,10 @@ function Interior({ formData, setFormData }: Props) {
                   },
                 });
               }}
-              name="timberwork"
+              name='timberwork'
             />
           }
-          label="Timber Work"
+          label='Timber Work'
         />
         <FormControlLabel
           control={
@@ -93,14 +94,14 @@ function Interior({ formData, setFormData }: Props) {
                   },
                 });
               }}
-              name="wall"
+              name='wall'
             />
           }
-          label="Wall"
+          label='Wall'
         />
-        <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
           <FormControlLabel
-            label="Roof"
+            label='Roof'
             control={
               <Checkbox
                 checked={(interiorData?.Room && interiorData?.Shower) || false}
@@ -113,13 +114,14 @@ function Interior({ formData, setFormData }: Props) {
           />
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              paddingLeft: "1rem",
-              borderLeft: "1px solid rgba(255, 255, 255, 0.7)",
-            }}>
+              display: 'flex',
+              flexDirection: 'column',
+              paddingLeft: '1rem',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.7)',
+            }}
+          >
             <FormControlLabel
-              label="Shower"
+              label='Shower'
               control={
                 <Checkbox
                   checked={interiorData?.Shower || false}
@@ -128,7 +130,7 @@ function Interior({ formData, setFormData }: Props) {
               }
             />
             <FormControlLabel
-              label="Room"
+              label='Room'
               control={
                 <Checkbox
                   checked={interiorData?.Room || false}
@@ -143,12 +145,12 @@ function Interior({ formData, setFormData }: Props) {
   );
 }
 const StyledFormGroup = styled(FormGroup)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  gap: "0.5rem",
-  flexWrap: "wrap",
-  "& .MuiFormControlLabel-root": {
-    width: "fit-content",
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '0.5rem',
+  flexWrap: 'wrap',
+  '& .MuiFormControlLabel-root': {
+    width: 'fit-content',
     m: 0,
     p: 0,
   },
