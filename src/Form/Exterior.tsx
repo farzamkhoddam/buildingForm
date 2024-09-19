@@ -5,8 +5,8 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
-} from "@mui/material";
-import { FormType } from "../interfaces/FormTypes";
+} from '@mui/material';
+import { FormType } from '../interfaces/FormTypes';
 
 interface Props {
   formData: FormType;
@@ -17,23 +17,24 @@ function Exterior({ formData, setFormData }: Props) {
   const exteriorData = formData?.ExteriorFields;
   return (
     <FormControl
-      component="fieldset"
+      component='fieldset'
       sx={{
-        display: "flex",
-        justifyContent: "start",
-        borderRadius: "15px",
-        padding: "1rem",
-        boxShadow: "inset 1px 1px 6px 0px rgba(0, 0, 0, 0.5)",
-        border: "1px solid #333",
+        display: 'flex',
+        justifyContent: 'start',
+        borderRadius: '15px',
+        padding: '1rem',
+        boxShadow: 'inset 1px 1px 6px 0px rgba(0, 0, 0, 0.1)',
+        backgroundColor: 'rgb(64 64 64 /1)',
       }}
-      variant="standard">
-      <FormLabel sx={{ width: "fit-content" }}>Exterior</FormLabel>
+      variant='standard'
+    >
+      <FormLabel sx={{ width: 'fit-content' }}>Exterior</FormLabel>
       <StyledFormGroup>
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
-              name="roof"
+              inputProps={{ 'aria-label': 'controlled' }}
+              name='roof'
               checked={exteriorData?.Roof || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -43,12 +44,12 @@ function Exterior({ formData, setFormData }: Props) {
               }}
             />
           }
-          label="Roof"
+          label='Roof'
         />
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
+              inputProps={{ 'aria-label': 'controlled' }}
               checked={exteriorData?.BrickWall || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -61,12 +62,12 @@ function Exterior({ formData, setFormData }: Props) {
               }}
             />
           }
-          label="Brick Wall"
+          label='Brick Wall'
         />
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
+              inputProps={{ 'aria-label': 'controlled' }}
               checked={exteriorData?.Floor || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -74,15 +75,15 @@ function Exterior({ formData, setFormData }: Props) {
                   ExteriorFields: { ...exteriorData, Floor: e.target.checked },
                 });
               }}
-              name="floor"
+              name='floor'
             />
           }
-          label="Floor"
-        />{" "}
+          label='Floor'
+        />{' '}
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
+              inputProps={{ 'aria-label': 'controlled' }}
               checked={exteriorData?.Eaves || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -91,15 +92,15 @@ function Exterior({ formData, setFormData }: Props) {
                   ExteriorFields: { ...exteriorData, Eaves: e.target.checked },
                 });
               }}
-              name="eaves"
+              name='eaves'
             />
           }
-          label="Eaves"
+          label='Eaves'
         />
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
+              inputProps={{ 'aria-label': 'controlled' }}
               checked={exteriorData?.Facia || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -107,15 +108,15 @@ function Exterior({ formData, setFormData }: Props) {
                   ExteriorFields: { ...exteriorData, Facia: e.target.checked },
                 });
               }}
-              name="facia"
+              name='facia'
             />
           }
-          label="Facia"
+          label='Facia'
         />
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
+              inputProps={{ 'aria-label': 'controlled' }}
               checked={exteriorData?.Render || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -124,15 +125,15 @@ function Exterior({ formData, setFormData }: Props) {
                   ExteriorFields: { ...exteriorData, Render: e.target.checked },
                 });
               }}
-              name="render"
+              name='render'
             />
           }
-          label="Render"
+          label='Render'
         />
         <FormControlLabel
           control={
             <Checkbox
-              inputProps={{ "aria-label": "controlled" }}
+              inputProps={{ 'aria-label': 'controlled' }}
               checked={exteriorData?.Gutter || false}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setFormData({
@@ -140,10 +141,10 @@ function Exterior({ formData, setFormData }: Props) {
                   ExteriorFields: { ...exteriorData, Gutter: e.target.checked },
                 });
               }}
-              name="gutter"
+              name='gutter'
             />
           }
-          label="Gutter"
+          label='Gutter'
         />
       </StyledFormGroup>
     </FormControl>
@@ -151,12 +152,12 @@ function Exterior({ formData, setFormData }: Props) {
 }
 
 const StyledFormGroup = styled(FormGroup)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  gap: "0.5rem",
-  flexWrap: "wrap",
-  "& .MuiFormControlLabel-root": {
-    width: "fit-content",
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '0.5rem',
+  flexWrap: 'wrap',
+  '& .MuiFormControlLabel-root': {
+    width: 'fit-content',
     m: 0,
     p: 0,
   },
